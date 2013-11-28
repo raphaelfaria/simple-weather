@@ -17,6 +17,9 @@ body {
   position: relative;
   overflow: hidden; }
 
+.transparent {
+  opacity: 0; }
+
 #forecast-wrapper {
   width: 500px;
   height: 500px;

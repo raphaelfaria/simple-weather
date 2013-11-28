@@ -1,11 +1,11 @@
 $(function() {
 
-  windowHeight = $(window).height();
-  windowWidth = $(window).width();
-  wrapper = $('#content-wrapper');
-  bodyElem = $('body');
-  tempWrapper = $('.temp');
-  humidityWrapper = $('.humidity');
+  var windowHeight = $(window).height(),
+      windowWidth = $(window).width(),
+      wrapper = $('#content-wrapper'),
+      bodyElem = $('body'),
+      tempWrapper = $('.temp'),
+      humidityWrapper = $('.humidity');
   wrapper.css('margin-top', (windowHeight - wrapper.height())/2);
 
   $(window).resize(function() {
@@ -130,6 +130,8 @@ $(function() {
     // var humInd = (100 - hum) / 100 * 0.25;
 
     // drawFill(220, (0.25 + humInd) * pi, (0.75 - humInd) * pi, 1, "#00D9D9");
+
+    wrapper.removeClass('transparent');
 
   }
 
