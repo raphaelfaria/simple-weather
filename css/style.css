@@ -1,0 +1,39 @@
+body {
+  background-color: #f7f7f7;
+  font-family: 'roboto';
+  font-weight: 100; }
+
+#content-wrapper {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden; }
+
+#forecast-wrapper {
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center; }
+  #forecast-wrapper .temp {
+    font-size: 160px;
+    line-height: 500px;
+    position: relative; }
+    #forecast-wrapper .temp .tempsymb {
+      font-size: 70px !important;
+      line-height: 70px !important;
+      display: inline;
+      position: absolute;
+      top: 25px;
+      right: -30px; }
+
+.humidity {
+  position: absolute;
+  width: 500px;
+  display: block;
+  bottom: 70px;
+  font-size: 20px;
+  margin: 0 auto;
+  color: #00D9D9; }
