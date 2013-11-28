@@ -101,9 +101,6 @@ $(function() {
 
     writeTemperature(temp);
 
-    // var markup = tempConverter(temp) + 'º' + (DEG === 'c' ? 'C' : 'F');
-    // tempWrapper.append(markup);
-
     humidityWrapper.html(hum + '%');
 
     var hours = 1.5; //7.5 or 4.5
