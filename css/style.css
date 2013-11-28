@@ -1,7 +1,14 @@
 body {
-  background-color: #f7f7f7;
+  background-color: #2d3038;
   font-family: 'roboto';
   font-weight: 100; }
+
+.transition {
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out; }
 
 #content-wrapper {
   width: 500px;
@@ -18,9 +25,10 @@ body {
   left: 0;
   text-align: center; }
   #forecast-wrapper .temp {
-    font-size: 160px;
+    font-size: 140px;
     line-height: 500px;
-    position: relative; }
+    position: relative;
+    cursor: pointer; }
     #forecast-wrapper .temp .tempsymb {
       font-size: 70px !important;
       line-height: 70px !important;

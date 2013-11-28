@@ -8,6 +8,10 @@ $(function() {
   humidityWrapper = $('.humidity');
   wrapper.css('margin-top', (windowHeight - wrapper.height())/2);
 
+  $(window).resize(function() {
+    wrapper.css('margin-top', ($(window).height() - wrapper.height())/2);
+  });
+
   var dayBg = '#F7F7F7',
       nightBg = '#2D3038',
       dayCirc = '#D9D9D9',
@@ -25,10 +29,10 @@ $(function() {
 
 
   var geoLocal = true,
-      cityName = 'Washington',
-      lang = 'en',
-      DEG = 'c';
-
+      cityName = 'Belo Horizonte',
+      lang     = 'en',
+      DEG      = 'c',
+      tempStore;
 
   if (geoLocal == true) {
      if (navigator.geolocation) {
@@ -69,24 +73,21 @@ $(function() {
 
   function formatter(data) {
 
-    // var = $.parseJSON(localStorage.weather;
+    var d = new Date(),
+        offset    = d.getTimezoneOffset(),
+        localtime = d.getTime();
 
-    var d = new Date();
+    var sunrise       = data.sys.sunrise * 1000,
+        sunset        = data.sys.sunset * 1000,
+        city          = data.name,
+        temp          = data.main.temp,
+        hum           = data.main.humidity,
+        conditionId   = data.weather[0].id,
+        mainCondition = data.weather[0].main,
+        condition     = data.weather[0].description,
+        minMax        = [data.main.temp_min, data.main.temp_max];
 
-    var offset = d.getTimezoneOffset();
-    var localtime = d.getTime();
-
-    console.log(localtime);
-
-    var sunrise     = data.sys.sunrise * 1000;
-    var sunset      = data.sys.sunset * 1000;
-    var city = data.name;
-    var temp = data.main.temp;
-    var hum = data.main.humidity;
-    var conditionId = data.weather[0].id;
-    var mainCondition = data.weather[0].main;
-    var condition = data.weather[0].description;
-    var minMax = [data.main.temp_min, data.main.temp_max];
+    tempStore = temp; //store for later
 
     var day;
 
@@ -97,9 +98,12 @@ $(function() {
 
     colorize(day);
 
-    var markup = tempConverter(temp) + '<span class="tempsymb">º</span>'
 
-    tempWrapper.append(markup);
+    writeTemperature(temp);
+
+    // var markup = tempConverter(temp) + 'º' + (DEG === 'c' ? 'C' : 'F');
+    // tempWrapper.append(markup);
+
     humidityWrapper.html(hum + '%');
 
     var hours = 1.5; //7.5 or 4.5
@@ -147,6 +151,21 @@ $(function() {
               showError('An unknown error occured!');
               break;
       }
+  }
+
+  $('.temp').click(function() {
+    if(DEG === 'c') {
+      DEG = 'f';
+    }
+    else if(DEG === 'f') {
+      DEG = 'c';
+    }
+    writeTemperature(tempStore);
+  });
+
+  function writeTemperature(temp) {
+    var markup = tempConverter(temp) + 'º' + (DEG === 'c' ? 'C' : 'F');
+    tempWrapper.html(markup);
   }
 
   function drawStroke(midh, midv, radius, begin, end, width, colour) {
