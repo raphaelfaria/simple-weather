@@ -3,6 +3,7 @@ $(function() {
   var windowHeight = $(window).height(),
       windowWidth = $(window).width(),
       wrapper = $('#content-wrapper'),
+      citySelector = $('#city-selector'),
       bodyElem = $('body'),
       tempWrapper = $('.temp'),
       humidityWrapper = $('.humidity');
@@ -28,27 +29,33 @@ $(function() {
 
 
 
-  var geoLocal = true,
-      cityName = 'Belo Horizonte',
+  var geoLocal = false,
+      cityName = 'Madrid',
       lang     = 'en',
       DEG      = 'c',
       tempStore;
 
-  if (geoLocal == true) {
-     if (navigator.geolocation) {
-         navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
-     }
-     else {
-         alert('Error in localization');
-     }
-  }
-  else {
-     var weatherAPI = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&callback=?&lang=' + lang;
 
-     var forecastAPI = 'http://api.openweathermap.org/data/2.5/forecast?q='+ cityName +'&callback=?&lang=' + lang;
+  callWeatherApi();
 
-     getWeatherInfo(weatherAPI, forecastAPI, formatter);
+  function callWeatherApi() {
+    if (geoLocal == true) {
+       if (navigator.geolocation) {
+           navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
+       }
+       else {
+           alert('Error in localization');
+       }
+    }
+    else {
+       var weatherAPI = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&callback=?&lang=' + lang;
+
+       var forecastAPI = 'http://api.openweathermap.org/data/2.5/forecast?q='+ cityName +'&callback=?&lang=' + lang;
+
+       getWeatherInfo(weatherAPI, forecastAPI, formatter);
+    }
   }
+
 
   function locationSuccess(position) {
     var crd = position.coords;
@@ -96,16 +103,18 @@ $(function() {
     else
       day = true;
 
-    colorize(day);
+    colorize(day, removeTransparency);
 
+    console.log(city);
+
+    citySelector.find('.city-name').text(city);
 
     writeTemperature(temp);
 
     humidityWrapper.html(hum + '%');
 
-    var hours = 1.5; //7.5 or 4.5
-    // var hours = d.getHours() - 12 + ((d.getMinutes() * 5/3) / 100);
-    console.log(hours);
+    // var hours = 1.5; //7.5 or 4.5
+    var hours = d.getHours() - 12 + ((d.getMinutes() * 5/3) / 100);
 
     //clock holder draw
     drawStroke(midHor, midVer, 240, 0, 2 * pi, 20, bgc); //circle
@@ -131,7 +140,7 @@ $(function() {
 
     // drawFill(220, (0.25 + humInd) * pi, (0.75 - humInd) * pi, 1, "#00D9D9");
 
-    wrapper.removeClass('transparent');
+
 
   }
 
@@ -183,19 +192,21 @@ $(function() {
     ctx.fill();
   }
 
-  function colorize(day) {
+  function colorize(day, removeTranspacency) {
     if (day) {
-      bg = dayBg;
       bgc = dayCirc;
-      tempWrapper.css('color', nightBg);
+      $('body').attr('id', 'day');
     }
     else {
-      bg = nightBg;
       bgc = nightCirc;
-      tempWrapper.css('color', 'white');
+      $('body').attr('id', 'night');
     }
+    removeTransparency();
+  }
 
-    bodyElem.css('background-color', bg);
+  function removeTransparency() {
+    wrapper.removeClass('transparent');
+    citySelector.removeClass('transparent');
   }
 
   function tempConverter(temperature) {
