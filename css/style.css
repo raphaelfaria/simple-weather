@@ -26,6 +26,11 @@ body {
     left: 50%;
     top: 50%;
     margin: -50px 0 0 -28px; }
+  #loader-wrapper .weather-info-warning {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    margin-left: -73px; }
 
 .transition {
   -webkit-transition: all .2s ease-in-out;
