@@ -189,7 +189,7 @@ $(function() {
       bgc = nightCirc;
       $('body').attr('id', 'night');
     }
-    window.setTimeout(removeTransparency(), 500);
+    window.setTimeout(removeTransparency, 500);
   }
 
   function removeTransparency() {
