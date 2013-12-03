@@ -6,8 +6,26 @@ body#night {
   color: #f7f7f7; }
 
 body {
+  background-color: #2d3038;
   font-family: 'roboto';
   font-weight: 100; }
+
+#loader-wrapper {
+  background-color: #2d3038;
+  z-index: 100;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: #f7f7f7; }
+  #loader-wrapper .loader-pin {
+    font-size: 100px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -50px 0 0 -28px; }
 
 .transition {
   -webkit-transition: all .2s ease-in-out;
@@ -17,15 +35,29 @@ body {
   transition: all .2s ease-in-out; }
 
 #city-selector {
+  text-align: right;
   top: 0;
   right: 0;
   padding: 30px;
   position: absolute;
-  font-size: 20px; }
-  #city-selector .city-name {
-    margin-right: 10px; }
-  #city-selector .city-icon {
+  font-size: 17px; }
+  #city-selector .location, #city-selector .location-add {
+    margin-bottom: 15px; }
+  #city-selector .city-name, #city-selector .city-name-input {
+    margin-right: 15px; }
+  #city-selector .city-icon, #city-selector .add-city-icon {
     width: 20px;
+    text-align: center; }
+  #city-selector .city-name-input {
+    color: #f7f7f7 !important;
+    padding: 5px 10px;
+    outline: 0;
+    margin-right: 15px;
+    border: solid 1px #474c57;
+    background-color: transparent; }
+  #city-selector .add-city-icon {
+    width: 20px;
+    font-size: 14px !important;
     text-align: center; }
 
 #content-wrapper {

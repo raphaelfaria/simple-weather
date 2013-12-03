@@ -3,6 +3,7 @@ $(function() {
   var windowHeight = $(window).height(),
       windowWidth = $(window).width(),
       wrapper = $('#content-wrapper'),
+      loaderWrapper = $('#loader-wrapper'),
       citySelector = $('#city-selector'),
       bodyElem = $('body'),
       tempWrapper = $('.temp'),
@@ -29,8 +30,8 @@ $(function() {
 
 
 
-  var geoLocal = false,
-      cityName = 'Madrid',
+  var geoLocal = true,
+      cityName = '',
       lang     = 'en',
       DEG      = 'c',
       tempStore;
@@ -105,15 +106,12 @@ $(function() {
 
     colorize(day, removeTransparency);
 
-    console.log(city);
-
     citySelector.find('.city-name').text(city);
 
     writeTemperature(temp);
 
     humidityWrapper.html(hum + '%');
 
-    // var hours = 1.5; //7.5 or 4.5
     var hours = d.getHours() - 12 + ((d.getMinutes() * 5/3) / 100);
 
     //clock holder draw
@@ -132,16 +130,6 @@ $(function() {
     //hum holder draw
     var humInd = (100 - hum) / 100 * 0.25;
     drawStroke(midHor, midVer, 218, (0.25 + humInd) * pi, (0.75 - humInd) * pi, 4, "#00D9D9");
-    // drawStroke(midHor, midVer, 220, 0.25 * pi, 0.75 * pi, 1, "#00D9D9")
-
-    //hum indicator draw
-
-    // var humInd = (100 - hum) / 100 * 0.25;
-
-    // drawFill(220, (0.25 + humInd) * pi, (0.75 - humInd) * pi, 1, "#00D9D9");
-
-
-
   }
 
   function locationError(error){
@@ -201,12 +189,18 @@ $(function() {
       bgc = nightCirc;
       $('body').attr('id', 'night');
     }
-    removeTransparency();
+    window.setTimeout(removeTransparency(), 500);
   }
 
   function removeTransparency() {
-    wrapper.removeClass('transparent');
-    citySelector.removeClass('transparent');
+    loaderWrapper.addClass('transparent');
+
+    window.setTimeout(function() {
+      wrapper.removeClass('transparent');
+      citySelector.removeClass('transparent');
+      loaderWrapper.css('display','none');
+    }, 200);
+
   }
 
   function tempConverter(temperature) {

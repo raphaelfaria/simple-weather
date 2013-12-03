@@ -10,14 +10,22 @@
 </head>
 <body class='transition'>
 
-  <!-- <div id="loader-wrapper">
-
-  </div> -->
+  <div id="loader-wrapper" class="transition">
+    <span class="loader-pin fa fa-map-marker"></span>
+  </div>
 
   <div id='city-selector' class='transparent transition'>
-    <div class='local'>
+    <div class='location current'>
       <span class='city-name'></span>
       <div class='fa fa-map-marker city-icon'></div>
+    </div>
+    <div class='location selected'>
+      <span class='city-name'></span>
+      <div class='fa fa-map-marker city-icon'></div>
+    </div>
+    <div class='location'>
+      <input class='city-name-input'></input>
+      <div class='fa fa-plus add-city-icon'></div>
     </div>
   </div>
 
