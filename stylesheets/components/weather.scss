@@ -1,0 +1,19 @@
+.weather {
+  height: 100%;
+  width: 100%;
+  display: table;
+  text-align: center;
+
+  &__wrapper {
+    height: 500px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  &__container {
+    height: 500px;
+    width: 500px;
+    margin: 0 auto;
+    position: relative;
+  }
+}

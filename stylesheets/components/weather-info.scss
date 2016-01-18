@@ -1,0 +1,25 @@
+.weather-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+
+  &__temp {
+    font-size: 140px;
+    line-height: 500px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  &__humidity {
+    position: absolute;
+    width: 500px;
+    display: block;
+    bottom: 70px;
+    font-size: 20px;
+    margin: 0 auto;
+    color: $humidity;
+  }
+}
