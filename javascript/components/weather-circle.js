@@ -49,8 +49,8 @@ class WeatherCircle extends React.Component {
 
     h = hue / 3.6 / 100;
 
-    s = 90 / 100;
-    l = 40 / 100;
+    s = 53.51 / 100;
+    l = 55.29 / 100;
 
     let r;
     let g;
@@ -98,7 +98,7 @@ class WeatherCircle extends React.Component {
     const hours = this._hoursByCoordinate(this.props.lon);
     const midHor = this.canvas.elem.width / 2;
     const midVer = this.canvas.elem.height / 2;
-    const dayCirc = '#D9D9D9';
+    const dayCirc = '#FFFFFF';
     const nightCirc = '#474C57';
     const humColour = '#00D9D9';
     const PI = Math.PI;
