@@ -13,7 +13,12 @@ class Weather extends React.Component {
       <div className="weather">
         <div className="weather__wrapper">
           <div className="weather__container">
-            <WeatherCircle temp={this.props.main.temp} hum={this.props.main.humidity} />
+            <WeatherCircle
+              sun={this.props.sun}
+              lon={this.props.coord.lon}
+              temp={this.props.main.temp}
+              hum={this.props.main.humidity}
+            />
             <WeatherInfo temp={this.props.main.temp} hum={this.props.main.humidity} />
           </div>
         </div>

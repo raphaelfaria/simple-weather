@@ -80,20 +80,43 @@ class WeatherCircle extends React.Component {
     return '#' + hex.join('');
   }
 
+  _hoursByCoordinate(lon) {
+    const time = new Date();
+    const offset = Math.round(lon / 15);
+    const UTCHours = time.getUTCHours();
+    const UTCMinutes = time.getUTCMinutes();
+
+    const hours =
+      (UTCHours > 12 ? UTCHours - 12 : UTCHours) +
+      (UTCMinutes * 5 / 3 / 100) +
+      offset;
+
+    return hours >= 12 ? hours - 12 : hours;
+  }
+
+  _drawDay() {
+    const time = Date.now() / 1000;
+    const sunrise = this.props.sun.sunrise;
+    const sunset = this.props.sun.sunset;
+
+    if (time > sunrise && time < sunset) {
+      return true;
+    }
+
+    return false;
+  }
+
   _drawCircle() {
-    const time = new Date;
+    const hours = this._hoursByCoordinate(this.props.lon);
     const midHor = this.canvas.elem.width / 2;
     const midVer = this.canvas.elem.height / 2;
-    // const dayBg = '#F7F7F7';
-    // const nightBg = '#2D3038';
-    // const dayCirc = '#D9D9D9';
+    const dayCirc = '#D9D9D9';
     const nightCirc = '#474C57';
     const humColour = '#00D9D9';
     const PI = Math.PI;
-    const hours = time.getHours() - 12 + ((time.getMinutes() * 5 / 3) / 100);
 
     // Draw main circle
-    this._drawStroke(midHor, midVer, 240, 0, 2 * PI, 20, nightCirc);
+    this._drawStroke(midHor, midVer, 240, 0, 2 * PI, 20, this._drawDay() ? dayCirc : nightCirc);
 
     // Temperature + Time indicator
     this._drawStroke(
@@ -117,7 +140,7 @@ class WeatherCircle extends React.Component {
     );
   }
 
-  componentDidMount() {
+  _updateCircle() {
     const elem = ReactDOM.findDOMNode(this);
     const context = elem.getContext('2d');
 
@@ -125,7 +148,17 @@ class WeatherCircle extends React.Component {
       elem, context,
     };
 
+    context.clearRect(0, 0, elem.width, elem.height);
+
     this._drawCircle();
+  }
+
+  componentDidUpdate() {
+    this._updateCircle();
+  }
+
+  componentDidMount() {
+    this._updateCircle();
   }
 }
 
