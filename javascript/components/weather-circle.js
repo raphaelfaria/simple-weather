@@ -94,18 +94,6 @@ class WeatherCircle extends React.Component {
     return hours >= 12 ? hours - 12 : hours;
   }
 
-  _drawDay() {
-    const time = Date.now() / 1000;
-    const sunrise = this.props.sun.sunrise;
-    const sunset = this.props.sun.sunset;
-
-    if (time > sunrise && time < sunset) {
-      return true;
-    }
-
-    return false;
-  }
-
   _drawCircle() {
     const hours = this._hoursByCoordinate(this.props.lon);
     const midHor = this.canvas.elem.width / 2;
@@ -116,7 +104,7 @@ class WeatherCircle extends React.Component {
     const PI = Math.PI;
 
     // Draw main circle
-    this._drawStroke(midHor, midVer, 240, 0, 2 * PI, 20, this._drawDay() ? dayCirc : nightCirc);
+    this._drawStroke(midHor, midVer, 240, 0, 2 * PI, 20, this.props.day ? dayCirc : nightCirc);
 
     // Temperature + Time indicator
     this._drawStroke(

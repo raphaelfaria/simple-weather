@@ -58,17 +58,21 @@ html, body, #wrapper, .app {
 }
 
 body {
-  background-color: $night-bg;
-  color: $day-bg;
   font-family: 'roboto';
   font-weight: 100;
 
-  &.body__day {
+}
+
+
+.app {
+  background-color: $night-bg;
+  color: $day-bg;
+
+  &--day {
     background-color: $day-bg;
     color: $night-bg;
   }
 }
-
 
 // Components
 
