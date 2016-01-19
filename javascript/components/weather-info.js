@@ -13,8 +13,8 @@ class WeatherInfo extends React.Component {
   render() {
     return (
       <div className="weather-info">
-        <span className="weather-info__temp">{this._getCelcius(this.props.temp)}</span>
-        <span className="weather-info__humidity">{this.props.hum}</span>
+        <span className="weather-info__temp">{this._getCelcius(this.props.temp)}ºC</span>
+        <span className="weather-info__humidity">{this.props.hum}%</span>
       </div>
     );
   }
