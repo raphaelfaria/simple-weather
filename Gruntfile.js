@@ -17,20 +17,12 @@ module.exports = function (grunt) {
     browserify: {
       dist: {
         options: {
-          // exclude: [
-          //   'react',
-          //   'react-dom',
-          // ],
           transform: [
             ['babelify'],
           ],
         },
-        files: {
-          './build/js/app.js': [
-            './javascript/app.js',
-            './javascript/components/*.js',
-          ],
-        },
+        src: 'javascript/app.js',
+        dest: 'build/js/app.js',
       },
     },
     watch: {
