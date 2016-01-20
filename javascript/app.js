@@ -2,24 +2,46 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import CitySelector from './components/city-selector';
 import Weather from './components/weather';
+import dispatcher from './dispatcher/dispatcher';
+import weatherApi from './helpers/weather-api';
 
+weatherApi.getWeather('Melbourne', 'AU');
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.displayName = 'App';
-    this.state = JSON.parse('{"coord":{"lon":-0.13,"lat":51.51},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04n"}],"base":"cmc stations","main":{"temp":271.21,"pressure":1015,"humidity":87,"temp_min":270.05,"temp_max":273.15},"wind":{"speed":1.5,"deg":60},"clouds":{"all":56},"dt":1453159642,"sys":{"type":1,"id":5091,"message":0.0148,"country":"GB","sunrise":1453103779,"sunset":1453134377},"id":2643743,"name":"London","cod":200}');
+    this.state = null;
   }
 
   _isDay() {
+    let sunrise = this.state.sys.sunrise;
+    let sunset = this.state.sys.sunset;
+
     const time = Date.now() / 1000;
-    const sunrise = this.state.sys.sunrise;
-    const sunset = this.state.sys.sunset;
+    const daySeconds = 24 * 60 * 60;
+
+    while (time > sunrise + daySeconds) {
+      sunrise += daySeconds;
+      sunset += daySeconds;
+    }
 
     return time > sunrise && time < sunset;
   }
 
-    return false;
+  componentDidMount() {
+    dispatcher.register((payload) => {
+      const action = payload.action;
+      const data = payload.data;
+
+      switch (action) {
+        case 'UPDATE_WEATHER':
+          this.setState(data);
+          break;
+        default:
+          return true;
+      }
+    });
   }
 
   render() {
