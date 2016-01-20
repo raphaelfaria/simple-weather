@@ -17,6 +17,10 @@ module.exports = function (grunt) {
     browserify: {
       dist: {
         options: {
+          // exclude: [
+          //   'react',
+          //   'react-dom',
+          // ],
           transform: [
             ['babelify'],
           ],

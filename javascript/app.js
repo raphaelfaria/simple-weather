@@ -29,7 +29,6 @@ class App extends React.Component {
     }
 
     const isDay = this._isDay();
-    console.log(isDay);
 
     return (
       <div className={'app' + (isDay ? ' app--day' : '')}>
