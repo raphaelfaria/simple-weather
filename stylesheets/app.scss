@@ -3,6 +3,9 @@ $night-bg: #2D3038;
 $day-circ: #D9D9D9;
 $night-circ: #474C57;
 $humidity: #00D9D9;
+$width-large: 500px;
+$width-small: 250px;
+$breakpoint: 550px;
 
 // Reset
 
@@ -77,5 +80,6 @@ body {
 // Components
 
 @import './components/city-selector';
+@import './components/weather-circle';
 @import './components/weather-info';
 @import './components/weather';

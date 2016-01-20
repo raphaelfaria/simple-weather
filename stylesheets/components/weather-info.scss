@@ -8,18 +8,33 @@
 
   &__temp {
     font-size: 140px;
-    line-height: 500px;
+    line-height: $width-large;
     position: relative;
     cursor: pointer;
   }
 
   &__humidity {
     position: absolute;
-    width: 500px;
+    width: $width-large;
     display: block;
     bottom: 70px;
     font-size: 20px;
     margin: 0 auto;
     color: $humidity;
+  }
+}
+
+@media (max-width: $breakpoint) {
+  .weather-info {
+    &__temp {
+      font-size: 70px;
+      line-height: $width-small;
+    }
+
+    &__humidity {
+      width: $width-small;
+      bottom: 45px;
+      font-size: 16px;
+    }
   }
 }

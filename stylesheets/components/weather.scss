@@ -5,15 +5,28 @@
   text-align: center;
 
   &__wrapper {
-    height: 500px;
+    height: $width-large;
     display: table-cell;
     vertical-align: middle;
   }
 
   &__container {
-    height: 500px;
-    width: 500px;
+    height: $width-large;
+    width: $width-large;
     margin: 0 auto;
     position: relative;
+  }
+}
+
+@media (max-width: $breakpoint) {
+  .weather {
+    &__wrapper {
+      height: $width-small;
+    }
+
+    &__container {
+      height: $width-small;
+      width: $width-small;
+    }
   }
 }
