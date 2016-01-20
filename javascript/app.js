@@ -16,9 +16,8 @@ class App extends React.Component {
     const sunrise = this.state.sys.sunrise;
     const sunset = this.state.sys.sunset;
 
-    if (time > sunrise && time < sunset) {
-      return true;
-    }
+    return time > sunrise && time < sunset;
+  }
 
     return false;
   }
