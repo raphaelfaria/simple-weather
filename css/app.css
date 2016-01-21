@@ -1,0 +1,122 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+html, body, #wrapper, .app {
+  height: 100%; }
+
+body {
+  font-family: 'roboto';
+  font-weight: 100; }
+
+.app {
+  background-color: #2D3038;
+  color: #F7F7F7;
+  transition: background .1s; }
+  .app--day {
+    background-color: #F7F7F7;
+    color: #2D3038; }
+
+.city-selector {
+  text-align: right;
+  top: 0;
+  right: 0;
+  padding: 30px;
+  position: absolute;
+  font-size: 17px; }
+
+@media (max-width: 550px) {
+  .weather-circle {
+    height: 250px;
+    width: 250px; } }
+.weather-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center; }
+  .weather-info__temp {
+    font-size: 140px;
+    line-height: 500px;
+    position: relative;
+    cursor: pointer; }
+  .weather-info__humidity {
+    position: absolute;
+    width: 500px;
+    display: block;
+    bottom: 70px;
+    font-size: 20px;
+    margin: 0 auto;
+    color: #00D9D9; }
+
+@media (max-width: 550px) {
+  .weather-info__temp {
+    font-size: 70px;
+    line-height: 250px; }
+  .weather-info__humidity {
+    width: 250px;
+    bottom: 45px;
+    font-size: 16px; } }
+.weather {
+  height: 100%;
+  width: 100%;
+  display: table;
+  text-align: center; }
+  .weather__wrapper {
+    height: 500px;
+    display: table-cell;
+    vertical-align: middle; }
+  .weather__container {
+    height: 500px;
+    width: 500px;
+    margin: 0 auto;
+    position: relative; }
+
+@media (max-width: 550px) {
+  .weather__wrapper {
+    height: 250px; }
+  .weather__container {
+    height: 250px;
+    width: 250px; } }
+
+/*# sourceMappingURL=app.css.map */
