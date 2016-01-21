@@ -18,6 +18,7 @@ class Weather extends React.Component {
               lon={this.props.coord.lon}
               temp={this.props.main.temp}
               hum={this.props.main.humidity}
+              localHours={this.props.localHours}
             />
             <WeatherInfo temp={this.props.main.temp} hum={this.props.main.humidity} />
           </div>

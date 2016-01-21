@@ -4,13 +4,13 @@ import CitySelector from './components/city-selector';
 import Weather from './components/weather';
 import dispatcher from './dispatcher/dispatcher';
 import weatherApi from './helpers/weather-api';
-
-weatherApi.getWeather('Melbourne', 'AU');
+import location from './helpers/location';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.displayName = 'App';
+    this.localHours = true;
     this.state = null;
   }
 
@@ -42,11 +42,18 @@ class App extends React.Component {
           return true;
       }
     });
+
+    location.getLocation().then((coords) => {
+      weatherApi.getWeatherByCoord(coords.latitude, coords.longitude);
+    }).catch(() => {
+      this.localHours = false;
+      weatherApi.getWeatherByCity('London', 'UK');
+    });
   }
 
   render() {
     if (!this.state) {
-      return <div>Loading</div>;
+      return <div className="app"></div>;
     }
 
     const isDay = this._isDay();
@@ -58,6 +65,7 @@ class App extends React.Component {
           main={this.state.main}
           coord={this.state.coord}
           day={isDay}
+          localHours={this.localHours}
         />
       </div>
     );

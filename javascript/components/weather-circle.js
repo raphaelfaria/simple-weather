@@ -80,22 +80,36 @@ class WeatherCircle extends React.Component {
     return '#' + hex.join('');
   }
 
+  _calcHours(h, m, offset = 0) {
+    const hours =
+      (h > 12 ? h - 12 : h) +
+      (m * 5 / 3 / 100) +
+      offset;
+
+    return hours >= 12 ? hours - 12 : hours;
+  }
+
   _hoursByCoordinate(lon) {
     const time = new Date();
     const offset = Math.round(lon / 15);
     const UTCHours = time.getUTCHours();
     const UTCMinutes = time.getUTCMinutes();
 
-    const hours =
-      (UTCHours > 12 ? UTCHours - 12 : UTCHours) +
-      (UTCMinutes * 5 / 3 / 100) +
-      offset;
+    return this._calcHours(UTCHours, UTCMinutes, offset);
+  }
 
-    return hours >= 12 ? hours - 12 : hours;
+  _localHours() {
+    const time = new Date();
+    const localHours = time.getHours();
+    const localMinutes = time.getMinutes();
+
+    return this._calcHours(localHours, localMinutes);
   }
 
   _drawCircle() {
-    const hours = this._hoursByCoordinate(this.props.lon);
+    const hours = this.props.localHours ?
+      this._localHours() :
+      this._hoursByCoordinate(this.props.lon);
     const midHor = this.canvas.elem.width / 2;
     const midVer = this.canvas.elem.height / 2;
     const dayCirc = '#FFFFFF';
