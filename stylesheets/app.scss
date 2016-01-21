@@ -70,6 +70,7 @@ body {
 .app {
   background-color: $night-bg;
   color: $day-bg;
+  transition: background .1s;
 
   &--day {
     background-color: $day-bg;

@@ -1,12 +1,18 @@
 import weatherActions from '../actions/weather-actions';
 
-const apiUrl = '';
-const appId = '';
+const apiUrl = 'http://simple-weather-api.herokuapp.com/weather';
+
+function getWeather(query) {
+  return fetch(`${apiUrl}?${query}`)
+    .then((response) => response.json())
+    .then((data) => weatherActions.receiveWeatherInfo(data));
+}
 
 module.exports = {
-  getWeather(city, country) {
-    return fetch(`${apiUrl}${city},${country}&appid=${appId}`)
-      .then((response) => response.json())
-      .then((data) => weatherActions.receiveWeatherInfo(data));
+  getWeatherByCity(city, country) {
+    return getWeather(`city=${city},${country}`);
+  },
+  getWeatherByCoord(lat, lon) {
+    return getWeather(`lat=${lat}&lon=${lon}`);
   },
 };
