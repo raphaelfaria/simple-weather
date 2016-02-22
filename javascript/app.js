@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import CitySelector from './components/city-selector';
 import Weather from './components/weather';
+import Loader from './components/loader';
 import dispatcher from './dispatcher/dispatcher';
 import weatherApi from './helpers/weather-api';
 import location from './helpers/location';
@@ -53,7 +54,11 @@ class App extends React.Component {
 
   render() {
     if (!this.state) {
-      return <div className="app"></div>;
+      return (
+        <div className="app">
+          <Loader/>
+        </div>
+      );
     }
 
     const isDay = this._isDay();

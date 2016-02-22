@@ -71,6 +71,7 @@ body {
   background-color: $night-bg;
   color: $day-bg;
   transition: background .1s;
+  position: relative;
 
   &--day {
     background-color: $day-bg;
@@ -81,6 +82,7 @@ body {
 // Components
 
 @import './components/city-selector';
+@import './components/loader';
 @import './components/weather-circle';
 @import './components/weather-info';
 @import './components/weather';
